@@ -8,5 +8,5 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
-www.JohnDHurley.github.io/RNA_Initial.html
+Welcome to my research [website.]
+(www.JohnDHurley.github.io/RNA_Initial.html)
