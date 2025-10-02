@@ -1,0 +1,21 @@
+name: Evol_CM_Diff_TEs
+output_dir: ../docs
+navbar:
+  title: Evol_CM_Diff_TEs
+  left:
+  - text: Home
+    href: index.html
+  - text: About
+    href: about.html
+  - text: License
+    href: license.html
+  right:
+  - icon: fab fa-github
+    text: Source code
+    href: https://github.com/JohnDHurley/Evol_CM_Diff_TEs
+output:
+  workflowr::wflow_html:
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+    highlight: textmate

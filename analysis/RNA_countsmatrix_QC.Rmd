@@ -1,0 +1,130 @@
+---
+title: "AThing"
+output: html_document
+date: "2025-10-02"
+---
+```{r package loading}
+library("edgeR")
+library("ggplot2")
+library("tibble")
+library("dplyr")
+library("edgeR")
+library("ggrepel")
+library("readr")
+library("org.Hs.eg.db")
+library("AnnotationDbi")
+library("pheatmap")
+library("Cormotif")
+```
+
+```{r H3J27ac counts table}
+chimp_RNA_pantro5_fc <- read.delim("~/diff_timeline_tes/RNA/featurecounts/c_samples_counts.txt", comment.char="#",row.names=1)
+human_RNA_hg38_fc <- read.delim("~/diff_timeline_tes/RNA/featurecounts/h_sample_counts.txt", comment.char="#",row.names=1)
+human_df <- human_RNA_hg38_fc %>%
+  tibble::rownames_to_column("gene")
+chimp_df <- chimp_RNA_pantro5_fc %>%
+  tibble::rownames_to_column("gene")
+RNA_joined_fc <- left_join(human_df, chimp_df, by = "gene")
+
+#To keep only OrthoGenes and sample columns
+RNA_fc <- RNA_joined_fc[ , !(names(RNA_joined_fc) %in% c("gene","Chr.x","Start.x","End.x","Strand.x","Length.x","Geneid.x","Chr.y","Start.y","End.y","Strand.y","Length.y","Geneid.y"))]
+# 89 columns; 7 x 6 = 42 Human Exp, 7 x 6 = 42 Chimp Exp, 4 Human Replicate
+rownames(RNA_fc) <- RNA_joined_fc$gene
+
+#Rename column Names to More Useful Info
+col_names<- c("H28126_D0",
+              "H28126_D2",
+              "H28126_D4",
+              "H28126_D5",
+              "H28126_D15",
+              "H28126_D30",
+              "H17_D0",
+              "H17_D2",
+              "H17_D4",
+              "H17_D5",
+              "H17_D15",
+              "H17_D30",
+              "H78_D0",
+              "H78_D2",
+              "H78_D4",
+              "H78_D5",
+              "H78_D15",
+              "H78_D30",
+              "H20682_D0",
+              "H20682_D2",
+              "H20682_D4",
+              "H20682_D5",
+              "H20682_D15",
+              "H20682_D30",
+              "H22422_D0",
+              "H22422_D2",
+              "H22422_D4",
+              "H22422_D5",
+              "H22422_D15",
+              "H22422_D30",
+              "H21792_D0",
+              "H21792_D2",
+              "H21792_D4",
+              "H21792_D5",
+              "H21792_D15",
+              "H21792_D30",
+              "H24280_D0",
+              "H24280_D2",
+              "H24280_D4",
+              "H24280_D5",
+              "H24280_D15",
+              "H24280_D30",
+              "H20682R_D0",
+              "H20682R_D2",
+              "H20682R_D5",
+              "H20682R_D30",
+              "C3649_D0",
+              "C3649_D2",
+              "C3649_D4",
+              "C3649_D5",
+              "C3649_D15",
+              "C3649_D30",
+              "C4955_D0",
+              "C4955_D2",
+              "C4955_D4",
+              "C4955_D5",
+              "C4955_D15",
+              "C4955_D30",
+              "C3651_D0",
+              "C3651_D2",
+              "C3651_D4",
+              "C3651_D5",
+              "C3651_D15",
+              "C3651_D30",
+              "C40210_D0",
+              "C40210_D2",
+              "C40210_D4",
+              "C40210_D5",
+              "C40210_D15",
+              "C40210_D30",
+              "C8861_D0",
+              "C8861_D2",
+              "C8861_D4",
+              "C8861_D5",
+              "C8861_D15",
+              "C8861_D30",
+              "C40280_D0",
+              "C40280_D2",
+              "C40280_D4",
+              "C40280_D5",
+              "C40280_D15",
+              "C40280_D30",
+              "C3647_D0",
+              "C3647_D2",
+              "C3647_D4",
+              "C3647_D5",
+              "C3647_D15",
+              "C3647_D30"
+)
+colnames(RNA_fc)<-col_names
+dim(RNA_fc)
+```
+```{r}
+
+```
+
